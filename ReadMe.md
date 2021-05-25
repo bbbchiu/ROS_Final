@@ -1,15 +1,27 @@
+# 檔案
+* cars.py: 車子的library檔
+* server.py: 農場的library檔
+* example檔: 測試檔
+
+## library
+
 import:
 	from cars import CAR
+	from server import SERVER
 
 create object:
-	c = CAR(id)
-	(id = 1, car = Device1)
+	c = CAR(name,id)
+	(id = 1, device = 'Device1')
+	s = SERVER(name,id)
+	(id = 1, device = "Device1")
 
 connect to datahub:
 	c.get_connect()
+	s.get_connect()
 
 disconnect to datahub:
 	c.get_disconnect()
+	s.get_disconeect()
 
 create new device:
 	c.ModifyConfig('Create')
@@ -27,9 +39,9 @@ delete device:
 	/* the tags info is in cars.py -> info_Init -> tagId,tagDes,default_tag_val */
 
 update data to car:
-	c.update_data(Tag,Value)
-	c.update_data(Tag,Value,'car')
+	c.update_data(id,Tag,Value)
+	c.update_data(id,Tag,Value,'car')
 
-update data to server:
-	c.update_data(Tag,Value,'server')
+update data to farm:
+	c.update_data(id,Tag,Value,'farm')
 

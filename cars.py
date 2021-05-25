@@ -15,13 +15,12 @@ class CAR():
         self.createEdgeAgent()
 
     def infoInit(self):
-        self.CarNodeId = '2373b0ec-d871-4043-814a-dd774f6959f2'
-        
         self.DeviceId = 'Device'+str(self.CarId)
         self.DCCS_apiUrl = 'https://api-dccs-ensaas.education.wise-paas.com/'
-        self.Car_DCCS_CreKey = '8cc7d0869a2f0e7053f2b90950bea3jc'
-        self.ServerNodeId = '2fac8bc9-fe89-4314-a6ed-545b5b89c597'
-        self.Server_DCCS_CreKey = '9af84f42ff95f824308fcd28439d84oc'
+        self.CarNodeId = ''
+        self.Car_DCCS_CreKey = ''
+        self.ServerNodeId = ''
+        self.Server_DCCS_CreKey = ''
         self.tagId =           ['ATag1'      ,'ATag2'   ,'ATag3'    ,'TTag2'          ,'TTag3']
         self.tagDes =          ['Temperature','Humidity','Farm ID'  ,'Car Name'       ,'Car Travel']
         self.default_tag_val = [0            ,0         ,""         ,str(self.name)   ,'Start']

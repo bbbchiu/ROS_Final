@@ -15,13 +15,14 @@ class SERVER():
         self.createEdgeAgent()
 
     def infoInit(self):
-        self.CarNodeId = '2373b0ec-d871-4043-814a-dd774f6959f2'
         
         self.DeviceId = 'Device'+str(self.Farm_Id)
         self.DCCS_apiUrl = 'https://api-dccs-ensaas.education.wise-paas.com/'
-        self.Car_DCCS_CreKey = '8cc7d0869a2f0e7053f2b90950bea3jc'
-        self.ServerNodeId = '2fac8bc9-fe89-4314-a6ed-545b5b89c597'
-        self.Server_DCCS_CreKey = '9af84f42ff95f824308fcd28439d84oc'
+
+        self.CarNodeId = ''
+        self.Car_DCCS_CreKey = ''
+        self.ServerNodeId = ''
+        self.Server_DCCS_CreKey = ''
         self.tagId =           ['ATag1'      ,'ATag2'   ,'TTag1']
         self.tagDes =          ['Temperature','Humidity','Farm Name']
         self.default_tag_val = [0            ,0         ,str(self.name)]
@@ -108,7 +109,7 @@ class SERVER():
             else:
                 print("error")
         self.config.node.deviceList.append(self.CarDeviceConfig)
-        self.CarEdgeAgent.uploadConfig(action = constant.ActionType[actions], edgeConfig = self.config)
+        self.ServerEdgeAgent.uploadConfig(action = constant.ActionType[actions], edgeConfig = self.config)
 
     def car_on_connected(self,isConnected):
         print("connected")
@@ -125,7 +126,7 @@ class SERVER():
             for tag in device.tagList:
                 print('tagName: {0}, Value: {1}'.format(tag.name, str(tag.value)))
             if(device.id == "Device"+str(self.CarId)):
-                self.update_data(tag.name,tag.value,'car')
+                self.update_data(self.DeviceId,tag.name,tag.value,'car')
         elif type == constant.MessageType['WriteConfig']:
             print('WriteConfig')
         elif type == constant.MessageType['TimeSync']:
@@ -161,10 +162,10 @@ class SERVER():
         time.sleep(1)
         print("Finish Disconnecting")
 
-    def update_data(self,TagId,data,des='farm'):
+    def update_data(self,id,TagId,data,des='farm'):
         print("updating value")
         self.edgeData = EdgeData()
-        tagD = EdgeTag(self.DeviceId,TagId,data)
+        tagD = EdgeTag(id,TagId,data)
         self.edgeData.tagList.append(tagD)
         self.edgeData.timestamp = datetime.datetime.now()
         if(des == 'car'):
@@ -177,4 +178,4 @@ class SERVER():
     def set_tag_val(self):
         for index,i in enumerate(self.tagId):
             print("self.default_tag_val[index]: ",self.default_tag_val[index])
-            self.update_data(self.tagId[index],self.default_tag_val[index],'farm')
+            self.update_data(self.DeviceId,self.tagId[index],self.default_tag_val[index],'farm')
