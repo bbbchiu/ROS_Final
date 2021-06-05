@@ -17,10 +17,12 @@ class CAR():
     def infoInit(self):
         self.DeviceId = 'Device'+str(self.CarId)
         self.DCCS_apiUrl = 'https://api-dccs-ensaas.education.wise-paas.com/'
+
         self.CarNodeId = ''
         self.Car_DCCS_CreKey = ''
         self.ServerNodeId = ''
         self.Server_DCCS_CreKey = ''
+
         self.tagId =           ['ATag1'      ,'ATag2'   ,'ATag3'    ,'TTag2'          ,'TTag3']
         self.tagDes =          ['Temperature','Humidity','Farm ID'  ,'Car Name'       ,'Car Travel']
         self.default_tag_val = [0            ,0         ,""         ,str(self.name)   ,'Start']

@@ -23,6 +23,7 @@ class SERVER():
         self.Car_DCCS_CreKey = ''
         self.ServerNodeId = ''
         self.Server_DCCS_CreKey = ''
+
         self.tagId =           ['ATag1'      ,'ATag2'   ,'TTag1']
         self.tagDes =          ['Temperature','Humidity','Farm Name']
         self.default_tag_val = [0            ,0         ,str(self.name)]
